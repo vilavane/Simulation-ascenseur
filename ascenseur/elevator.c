@@ -57,12 +57,11 @@ PersonList *enterElevator(Elevator *e, PersonList *waitingList)
     int nb_enter = e->capacity - nb_persons; //number of people who can enter in the elevator
     for (int i = 1; i != nb_enter; i++)
     {
-        delete (waitingList);
+        waitingList = waitingList->next; //remove the first person of waitingList
     }
     return waitingList;
 }
 
 void stepElevator(Building *b)
 {
-    //DO NOTHING
 }
