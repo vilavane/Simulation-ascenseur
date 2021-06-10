@@ -17,3 +17,10 @@ PersonList *insert(Person *p, PersonList *list)
     res->next = list;
     return res;
 }
+
+//remove the first person in the list
+PersonList *delete (PersonList *list)
+{
+    //list->person, list->next = (list->next)->person, (list->next)->next;
+    *list = *(list + 1);
+}

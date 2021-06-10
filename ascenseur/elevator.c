@@ -9,7 +9,7 @@ Elevator *create_elevator(int capacity, int currentFloor, PersonList *persons)
     e->capacity = capacity;
     e->currentFloor = currentFloor;
     e->persons = persons;
-    return lift;
+    return e;
 }
 
 Building *create_building(int nbFloor, Elevator *elevator, PersonList **waitingLists)
@@ -39,6 +39,30 @@ PersonList *exitElevator(Elevator *e)
     return persons_exit;
 }
 
+int len(PersonList *persons)
+{
+    int cpt = 0;
+    PersonList *current = persons;
+    while (current != NULL)
+    {
+        cpt++;
+        current = persons->next;
+    }
+    return cpt;
+}
+
 PersonList *enterElevator(Elevator *e, PersonList *waitingList)
 {
+    int nb_persons = len(e->persons);        //number of people inside the elevator
+    int nb_enter = e->capacity - nb_persons; //number of people who can enter in the elevator
+    for (int i = 1; i != nb_enter; i++)
+    {
+        delete (waitingList);
+    }
+    return waitingList;
+}
+
+void stepElevator(Building *b)
+{
+    //DO NOTHING
 }
