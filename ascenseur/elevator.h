@@ -20,6 +20,7 @@ typedef struct _Building
 Elevator *create_elevator(int capacity, int currentFloor, PersonList *persons);
 Building *create_building(int nbFloor, Elevator *elevator, PersonList **waitingLists);
 PersonList *exitElevator(Elevator *e);
+int len(PersonList *persons);
 PersonList *enterElevator(Elevator *e, PersonList *waitingList);
 void stepElevator(Building *b);
 
