@@ -63,5 +63,6 @@ PersonList *enterElevator(Elevator *e, PersonList *waitingList)
 }
 
 void stepElevator(Building *b)
-{ //DO NOTHING
+{
+    if (b->elevator->)
 }
