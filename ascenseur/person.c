@@ -17,3 +17,16 @@ PersonList *insert(Person *p, PersonList *list)
     res->next = list;
     return res;
 }
+
+PersonList *remove(Person *p, PersonList *list)
+{
+    PersonList *prev = NULL;
+    PersonList *current = list;
+    while (current != NULL)
+    {
+        if (p->src == current->person->src && p->dest == current->person->dest)
+        {
+            prev->next = current->next
+        }
+    }
+}
