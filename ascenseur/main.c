@@ -54,6 +54,7 @@ void DisplayBuilding(WINDOW *win, Building *b)
         DisplayPersonList(win, b->waitingLists[i], level, right_wall + 2);
     }
 }
+
 int main()
 {
     srand(time(NULL)); // should only be called once
@@ -72,16 +73,20 @@ int main()
             waitingLists[currentFloor] = insert(p, waitingLists[currentFloor]);
         }
     }
+
     // Initialize building and elevator
     int capacity = 3;
     int currentFloor = 0;
     Elevator *elevator = create_elevator(capacity, currentFloor, NULL);
     Building *building = create_building(nbFloor, elevator, waitingLists);
+
     // Initialize ncurse display
+
     initscr(); // initialize ncurses
     noecho();  // do not display in window the pressed keys
     halfdelay(2);
     WINDOW *win = newwin(HEIGHT, WIDTH, 0, 0);
+
     // Animation loop
     bool run = true;
     while (run)
@@ -100,6 +105,7 @@ int main()
                 building->elevator->targetFloor = level;
             }
         }
+
         // Update state machine of elevator !!!!
         stepElevator(building);
         wclear(win);    // clear display area
