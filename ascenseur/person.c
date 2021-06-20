@@ -18,7 +18,7 @@ PersonList *insert(Person *p, PersonList *list)
     return res;
 }
 
-PersonList *remove(Person *p, PersonList *list)
+PersonList *del(Person *p, PersonList *list)
 {
     PersonList *prev = NULL;
     PersonList *current = list;
@@ -26,7 +26,14 @@ PersonList *remove(Person *p, PersonList *list)
     {
         if (p->src == current->person->src && p->dest == current->person->dest)
         {
-            prev->next = current->next
+            prev->next = current->next;
         }
+        else
+        {
+            //DO NOTHING
+        }
+        prev = current;
+        current = current->next;
     }
+    return list;
 }
