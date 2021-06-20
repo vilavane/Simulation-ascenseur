@@ -29,7 +29,8 @@ PersonList *exitElevator(Elevator *e)
     {
         if (current->person->dest == e->currentFloor)
         {
-            insert(current->person, persons_exit);
+            e->persons = del(current->person, e->persons);
+            persons_exit = insert(current->person, persons_exit);
         }
         else
         { //DO NOTHING
@@ -57,12 +58,19 @@ PersonList *enterElevator(Elevator *e, PersonList *waitingList)
     int nb_enter = e->capacity - nb_persons; //number of people who can enter in the elevator
     for (int i = 1; i != nb_enter; i++)
     {
-        waitingList = waitingList->next; //remove the first person of waitingList
+        e->persons = insert(waitingList->person, e->persons); //insert the first person waiting in the elevator
+        waitingList = waitingList->next;                      //remove the first person of waitingList
     }
     return waitingList;
 }
 
 void stepElevator(Building *b)
 {
-    if (b->elevator->)
+    while (b->elevator->currentFloor != b->elevator->targetFloor)
+    {
+        b->elevator->currentFloor = b->elevator->currentFloor + ((b->elevator->targetFloor - b->elevator->currentFloor) / abs(b->elevator->currentFloor - b->elevator->targetFloor));
+    }
+    PersonList *persons_exit = malloc(sizeof(PersonList));
+    persons_exit = exitElevator(b->elevator);
+    b->waitingLists[b->elevator->currentFloor] = enterElevator(b->elevator, b->waitingLists[b->elevator->currentFloor]);
 }
